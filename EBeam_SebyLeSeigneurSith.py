@@ -3,8 +3,6 @@ import gdsfactory as gf
 import ubcpdk.components as pdk
 from ubcpdk.tech import LAYER
 
-
-
 def MyMZI(DeltaL: int):
 
     # Create the MZI
@@ -13,7 +11,7 @@ def MyMZI(DeltaL: int):
     topToBottom = mzi.size_info.se
 
     # Add two fiber grating couplers
-    mziWithGratingCouplers = pdk.add_fiber_array(fanout_length  = topToBottom[1]*0.95, straight_separation = topToBottom[1]*0, name = "MZI"+str(DeltaL), component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0))
+    mziWithGratingCouplers = pdk.add_fiber_array(fanout_length  = topToBottom[1]*0.9986+1, straight_separation = 0, name = "MZI"+str(DeltaL), component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0))
     
     return mziWithGratingCouplers
 
@@ -46,7 +44,7 @@ if __name__ == '__main__':
             MZI[i].movey(-200)
 
     # Add the de-embedding structure
-    DeEmbeddingStructure = topCell << pdk.add_fiber_array(name = 'DeEmbeddingStructure', with_loopback=False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_DeEmbeddingStructure"], layer_label = (10,0))
+    DeEmbeddingStructure = topCell << pdk.add_fiber_array(name = 'DeEmbeddingStructure', fanout_length = 1, straight_separation = 0, with_loopback=False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_DeEmbeddingStructure"], layer_label = (10,0))
     DeEmbeddingStructure.movex(origin = 0, destination = 150*3)
     topCell.align(elements=[DeEmbeddingStructure, MZI[2]], alignment='ymin')
 
