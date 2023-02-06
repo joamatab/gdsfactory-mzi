@@ -41,9 +41,9 @@ if __name__ == '__main__':
             MZI[i].movex(200*(i-3))
             MZI[i].movey(-200)
 
-    #floor = topCell << gf.components.rectangle(size = floorplan_size, layer = LAYER.FLOORPLAN, name = 'Allowed Zone')
-    #floor.movex(-90)
-    #floor.movey(-360)
+    floor = topCell << gf.components.rectangle(size = floorplan_size, layer = LAYER.FLOORPLAN, name = 'Allowed Zone')
+    floor.movex(-90)
+    floor.movey(-360)
 
     topCell.write_gds('./EBeam_SebyLeSeigneurSith.gds')
     
