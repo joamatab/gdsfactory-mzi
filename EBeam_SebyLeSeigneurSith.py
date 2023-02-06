@@ -12,7 +12,9 @@ def MyMZI(DeltaL: int):
     mzi = pdk.mzi(splitter = pdk.ebeam_y_1550, delta_length = DeltaL)
 
     # Add two fiber grating couplers
-    mziWithGratingCouplers = c << pdk.add_fiber_array(component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + "MZI" + str(DeltaL)], layer_label = (10,0))
+    mziWithGratingCouplers = c << pdk.add_fiber_array(component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0))
+
+    #mziWithGratingCouplers.origin = "lower"
 
     return c
 
@@ -28,7 +30,7 @@ floorplan_size = (605, 410)
 
 if __name__ == '__main__':
     
-    for i in range(1):#range(len(DeltaL_table)):
+    for i in range(len(DeltaL_table)):
 
         MZI.append(topCell << MyMZI(DeltaL = DeltaL_table[i]))
 
