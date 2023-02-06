@@ -5,18 +5,13 @@ from ubcpdk.tech import LAYER
 
 def MyMZI(DeltaL: int):
 
-    # Create a new component 
-    c = gf.Component("MZI"+str(DeltaL))
-
     # Create the MZI
     mzi = pdk.mzi(splitter = pdk.ebeam_y_1550, delta_length = DeltaL)
 
     # Add two fiber grating couplers
-    mziWithGratingCouplers = c << pdk.add_fiber_array(component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0))
+    mziWithGratingCouplers = pdk.add_fiber_array(name = "MZI"+str(DeltaL), component = mzi, grating_coupler = pdk.ebeam_gc_te1550, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0))
 
-    #mziWithGratingCouplers.origin = "lower"
-
-    return c
+    return mziWithGratingCouplers
 
 # Create the TOP cell for the GDS file
 topCell = gf.Component("EBeam_SebyLeSeigneurSith")
