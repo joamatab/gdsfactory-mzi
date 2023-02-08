@@ -11,7 +11,7 @@ def MyMZI(DeltaL: int):
     topToBottom = mzi.size_info.se
 
     # Add two fiber grating couplers
-    mziWithGratingCouplers = pdk.add_fiber_array(grating_coupler= pdk.ebeam_gc_te1550, name = "MZI"+str(DeltaL), component = mzi, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0), fanout_length  = topToBottom[1]+1, straight_separation = 0)
+    mziWithGratingCouplers = pdk.add_fiber_array(grating_coupler= pdk.gc_te1550, name = "MZI"+str(DeltaL), component = mzi, with_loopback = False, gc_port_labels = ["out", "opt_in_TE_1550_SebyleSeigneurSith_MZI" + str(DeltaL)], layer_label = (10,0), fanout_length  = topToBottom[1]+1, straight_separation = 0)
     
     return mziWithGratingCouplers
 
